@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include <stdio.h>
 
 using namespace std;
 
@@ -31,7 +30,7 @@ int main()
     //number of objects loaded
     numberOfLoadedObjects = strLen / lengthOfObject;            //8 bits is 1 object
 
-    //swipping around our string for errors
+    //swiping around our string for errors
     for (int i = 0; i < strLen; i+=lengthOfObject)               //getting to beg of every single object
     {
         //looking for errors in "id" number and control bite
@@ -55,7 +54,7 @@ int main()
 
     }
 
-    //getting out ourput.txt
+    //getting out output.txt
     file.open("output.txt", ios::out);
     if(file.good() == false)
     {
