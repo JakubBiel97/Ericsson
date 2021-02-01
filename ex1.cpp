@@ -8,7 +8,8 @@ int main()
 {
     unsigned int numberOfLoadedObjects = 0;
     unsigned int numberOfErrorObjects = 0;
-    unsigned int lengthOfObject = 8;                         // amount of bits per object
+    unsigned int lengthOfObject = 8;                           // amount of bits per object
+    unsigned int strLen = 0;
     string endingString;
     string numbersFromInput;
 
@@ -26,7 +27,13 @@ int main()
         file.close();                                           //closing file
     }
 
-    unsigned int strLen = numbersFromInput.length();            //amount of numbers
+
+    while(numbersFromInput[strLen] != NULL)                     //getting string length without ".length" function
+    {
+        strLen++;
+    }
+
+    //strLen = numbersFromInput.length();                        //amount of numbers
     //number of objects loaded
     numberOfLoadedObjects = strLen / lengthOfObject;            //8 bits is 1 object
 
