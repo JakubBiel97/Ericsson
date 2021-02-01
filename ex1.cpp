@@ -41,29 +41,27 @@ int main()
         if(numbersFromInput[i+3] != '0' && numbersFromInput[i+7] == '0')
         {
             numberOfErrorObjects++;
-            cout << i << endl;
         }
         else if(numbersFromInput[i+3] != '1' && numbersFromInput[i+7] == '1')
         {
             numberOfErrorObjects++;
-            cout << i << endl;
         }
         else if(numbersFromInput[i+4] == '0' && numbersFromInput[i+5] == '0'
                 && numbersFromInput[i+6] == '0')
         {
             numberOfErrorObjects++;
-            cout << i << endl;
         }
         else
         {
-            cout << i << endl;
+            for(int j = 0; j < 8  ; j++)
+            {
+                endingString += numbersFromInput[i + j];
+            }
         }
-/*        else
-        {
-            for(int j = i; j < strLen;)
-        }*/
 
     }
 
-    cout << "Ilosc bledow: " << numberOfErrorObjects;
+    cout << numberOfErrorObjects << endl;
+    cout << endingString;
+
 }
