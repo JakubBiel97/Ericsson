@@ -7,17 +7,16 @@ using namespace std;
 
 int main()
 {
-    int gettingTheStringLength = 0;
-    int numberOfLoadedObjects = 0;
-    int numberOfErrorObjects = 0;
-
+    unsigned int numberOfLoadedObjects = 0;
+    unsigned int numberOfErrorObjects = 0;
+    unsigned int lengthOfObject = 8;                         // amount of bits per object
     string endingString;
     string numbersFromInput;
-    char tempChar;
-    fstream file;
-    file.open("input.txt", ios::in);                        //openning the the input file
 
-    if(file.good() == false)                                 //testing if file did open
+    fstream file;
+    file.open("input.txt", ios::in);                          //opening the the input file
+
+    if(file.good() == false)                                  //testing if file did open
     {
         cout << "Error while opening the file." << endl;
         exit(0);
@@ -26,23 +25,18 @@ int main()
     {
         getline(file, numbersFromInput);                        //getting the numbers to our string
         file.close();                                           //closing file
-        //cout << numbersFromInput << endl;
     }
 
-    unsigned int strLen = numbersFromInput.length();            //ilosc znakow
+    unsigned int strLen = numbersFromInput.length();            //amount of numbers
     //number of objects loaded
-    numberOfLoadedObjects = strLen / 8;                         //8 bitow to 1 obiekt
-    cout << numberOfLoadedObjects << endl;
+    numberOfLoadedObjects = strLen / lengthOfObject;            //8 bits is 1 object
 
     //swipping around our string for errors
-    for (int i = 0; i < strLen; i+=8)
+    for (int i = 0; i < strLen; i+=lengthOfObject)               //getting to beg of every single object
     {
-        //looking for errors in number and control bite
-        if(numbersFromInput[i+3] != '0' && numbersFromInput[i+7] == '0')
-        {
-            numberOfErrorObjects++;
-        }
-        else if(numbersFromInput[i+3] != '1' && numbersFromInput[i+7] == '1')
+        //looking for errors in "id" number and control bite
+        if(numbersFromInput[i+3] != '0' && numbersFromInput[i+7] == '0'
+           || numbersFromInput[i+3] != '1' && numbersFromInput[i+7] == '1')
         {
             numberOfErrorObjects++;
         }
@@ -51,18 +45,15 @@ int main()
         {
             numberOfErrorObjects++;
         }
-        else
-        {
-            for(int j = 0; j < 8  ; j++)
+        else                                                      //creating a new string with only
+        {                                                         // "correct" objects (without errors)
+            for(int j = 0; j < lengthOfObject  ; j++)
             {
                 endingString += numbersFromInput[i + j];
             }
         }
 
     }
-
-    cout << numberOfErrorObjects << endl;
-    cout << endingString;
 
     //getting out ourput.txt
     file.open("output.txt", ios::out);
@@ -71,11 +62,12 @@ int main()
         cout << "Something went wrong with creating a file." << endl;
         exit(0);
     }
-    else
+    else                                                //saving to file
     {
         file << numberOfLoadedObjects << endl;
         file << numberOfErrorObjects << endl;
         file << endingString << endl;
+        file.close();
     }
 
 
