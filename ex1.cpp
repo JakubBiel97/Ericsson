@@ -64,4 +64,19 @@ int main()
     cout << numberOfErrorObjects << endl;
     cout << endingString;
 
+    //getting out ourput.txt
+    file.open("output.txt", ios::out);
+    if(file.good() == false)
+    {
+        cout << "Something went wrong with creating a file." << endl;
+        exit(0);
+    }
+    else
+    {
+        file << numberOfLoadedObjects << endl;
+        file << numberOfErrorObjects << endl;
+        file << endingString << endl;
+    }
+
+
 }
