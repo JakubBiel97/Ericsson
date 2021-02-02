@@ -12,7 +12,6 @@ int main()
     unsigned int strLen = 0;
     string endingString;
     string numbersFromInput;
-
     fstream file;
     file.open("input.txt", ios::in);                          //opening the the input file
 
