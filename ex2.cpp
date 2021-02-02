@@ -10,6 +10,7 @@ int decNumber = 0;
 int strLen = 0;
 int temp = 1;
 
+
 int main()
 {
     for(;;)                                                      //infinite loop to make us of the program many times
