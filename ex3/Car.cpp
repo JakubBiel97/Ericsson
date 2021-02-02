@@ -1,17 +1,16 @@
 #include "Car.h"
 #include <ctime>
 #include <cstdlib>
+#include <windows.h>
+#include <iostream>
 
 using namespace std;
 
-Car::Car()
+Car::Car(int speed1, int engineTemp1, int outsideTemp1)
 {
-	cout << "Lets make our car: " << endl << "Add starting speed: ";
-	cin >> speed;
-	cout << "Add starting egine temperature:";
-	cin >> engineTemp;
-	cout << "Add starting outside temperature:";
-	cin >> outsideTemp;
+	speed = speed1;
+	engineTemp = engineTemp1;
+	outsideTemp = outsideTemp1;
 }
 
 Car::~Car()
@@ -28,7 +27,7 @@ void Car::go()
 		tempTime = rand() % 2;
 		
 		cout << "Predkosc == " << this->speed << endl;
-		_sleep(1000);
+		Sleep(1000);
 		if (tempTime == 1)
 		{
 			this->speed += rand() % 3;							//changing the speed about 0,1 or 2 hm\h
@@ -43,7 +42,7 @@ void Car::go()
 			}
 		}
 		cout << "Predkosc == " << this->speed << endl;
-		_sleep(1000);
+		Sleep(1000);
 
 		tempTime = rand() % 2;
 		if (tempTime == 1)
@@ -65,14 +64,14 @@ void Car::go()
 		cout << "Turning degree == ";							//adding some more informations
 		if (tempTime == 1)										//turning lets say left with max 15degree
 		{
-			cout << rand() % 15 << "\% west." << endl;
+			cout << rand() % 15 << "% west." << endl;
 		}
 		else
 		{
-			cout << rand() % 15 << "\% east." << endl;
+			cout << rand() % 15 << "% east." << endl;
 		}
 
-		_sleep(1000);
+		Sleep(1000);
 
 		tempTime = rand() % 2;
 		if (tempTime == 1)
@@ -101,7 +100,7 @@ void Car::go()
 		}
 		cout << this->engineTemp << endl;
 
-		_sleep(1000);
+		Sleep(1000);
 
 		tempTime = rand() % 2;
 		if (tempTime == 1)
@@ -131,7 +130,7 @@ void Car::go()
 		}
 		cout << this->outsideTemp << endl;
 
-		_sleep(1000);
+		Sleep(1000);
 
 		tempTime = rand() % 2;
 		if (tempTime == 1)
