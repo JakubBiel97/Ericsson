@@ -12,7 +12,7 @@ int temp = 1;
 
 int main()
 {
-    for(;;)
+    for(;;)                                                      //infinite loop to make us of the program many times
     {
         strLen = 0;
         int choise;
@@ -22,7 +22,7 @@ int main()
         cout << "Exit - 0" << endl;
         cin >> choise;
 
-        while(choise != 2 && choise != 1 && choise != 0)                                   //safety kit
+        while(choise != 2 && choise != 1 && choise != 0)         //safety kit
         {
             cout << "Wrong number try again!(1, 2 or 0).";
             cin >> choise;
@@ -37,11 +37,11 @@ int main()
             cout <<"." << endl;
         }
         else if(choise == 2)
-        {                                               //binary to deci
+        {                                                        //binary to deci
             cout << "Enter a binar number: " << endl;
             cin >> binNumber;
 
-            while(binNumber[strLen] != NULL)           //getting our string length
+            while(binNumber[strLen] != NULL)                      //getting our string length
             {
                 strLen++;
             }
@@ -59,27 +59,18 @@ int main()
                     cin >> binNumber;
                     i = 0;
                     cout << endl << binNumber << endl;
-                }
-            }
-
-                /*while(binNumber[i] != '0' || binNumber[i] != '1' || binNumber[i] != NULL)
-                {
-                    cout << binNumber << " is not a binary number, try again:" << endl;
-                    cin >> binNumber;
-                    i = 0;
-                    while(binNumber[strLen] != NULL)           //getting our string length
+                    while(binNumber[strLen] != NULL)                //getting new string length
                     {
                         strLen++;
                     }
                 }
-            }*/
-            binaToDeci(binNumber, strLen);
+            }
+            binaToDeci(binNumber, strLen);                           //function
         }
-        else
+        else                                                         //breaking the infinite loop
         {
             exit(0);
         }
-
         cout << endl << endl;
     }
 }
@@ -87,13 +78,13 @@ int main()
 void deciToBina(int decNumber)
 {
     int x = 0;
-    int temp[15];
+    int temp[15];                                       //max 15, so its 2^15 - 1 = 32767
 
     for(int i = 0; decNumber > 0; i++)
     {
         temp[i] = decNumber % 2;
         decNumber = decNumber / 2;
-        x++;
+        x++;                                             //indicator to save the number bacwards
     }
 
     for(int i = x - 1; i >= 0; i--)
@@ -107,7 +98,6 @@ void binaToDeci(string binNumber, int stringLength)
 {
     decNumber = 0;
     temp = 1;
-    cout << stringLength << endl;
 
     for(int i = stringLength - 1; i >= 0; i--)          //going from last to 1st
     {
@@ -117,7 +107,5 @@ void binaToDeci(string binNumber, int stringLength)
         }
         temp *= 2;                                       //powers of 2 for each next bite
     }
-
     cout << endl << binNumber << " in Decimal will be: " << decNumber << endl;
-
 }
