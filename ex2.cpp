@@ -14,6 +14,7 @@ int main()
 {
     for(;;)
     {
+        strLen = 0;
         int choise;
         cout << "Hello, welcome in Jacob's calculator." << endl;
         cout << "If you would like to change Decimal to a Binary number - press 1." << endl;
@@ -45,18 +46,18 @@ int main()
                 strLen++;
             }
 
-            for(int i = 0; i < strLen; i++)                       //safety first
+            for(int i = 1; i <= strLen; i++)                       //safety first
             {
-                while(binNumber[i] != '0' || binNumber[i] != '1')
+                if(binNumber[i - 1] == '0' || binNumber[i - 1] == '1')
+                {
+                    continue;
+                }
+                else
                 {
                     cout << endl << binNumber << endl;
                     cout << binNumber << " is not a binary number, try again:" << endl;
                     cin >> binNumber;
                     i = 0;
-                    while(binNumber[strLen] != NULL)           //getting our string length
-                    {
-                        strLen++;
-                    }
                     cout << endl << binNumber << endl;
                 }
             }
@@ -104,6 +105,10 @@ void deciToBina(int decNumber)
 
 void binaToDeci(string binNumber, int stringLength)
 {
+    decNumber = 0;
+    temp = 1;
+    cout << stringLength << endl;
+
     for(int i = stringLength - 1; i >= 0; i--)          //going from last to 1st
     {
         if(binNumber[i] == '1')                         //in case == 0 nothing is changing
