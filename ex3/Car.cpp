@@ -4,6 +4,21 @@
 
 using namespace std;
 
+Car::Car()
+{
+	cout << "Lets make our car: " << endl << "Add starting speed: ";
+	cin >> speed;
+	cout << "Add starting egine temperature:";
+	cin >> engineTemp;
+	cout << "Add starting outside temperature:";
+	cin >> outsideTemp;
+}
+
+Car::~Car()
+{
+
+}
+
 void Car::go()
 {
 	for (;;)													//infinite loop
@@ -45,15 +60,16 @@ void Car::go()
 			}
 		}
 		cout << "Predkosc == " << this->speed << endl;
-		//turning
-		cout << "Turning degree == ";
+
+		//turning degree
+		cout << "Turning degree == ";							//adding some more informations
 		if (tempTime == 1)										//turning lets say left with max 15degree
 		{
-			cout << rand() % 15 << "\% to the left." << endl;
+			cout << rand() % 15 << "\% west." << endl;
 		}
 		else
 		{
-			cout << rand() % 15 << "\% to the right." << endl;
+			cout << rand() % 15 << "\% east." << endl;
 		}
 
 		_sleep(1000);
