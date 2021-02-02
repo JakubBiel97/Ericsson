@@ -18,11 +18,12 @@ int main()
         cout << "Hello, welcome in Jacob's calculator." << endl;
         cout << "If you would like to change Decimal to a Binary number - press 1." << endl;
         cout << "If you would like to change Binary to a Decimal number - press 2." << endl;
+        cout << "Exit - 0" << endl;
         cin >> choise;
 
-        while(choise != 2 && choise != 1)                                   //safety kit
+        while(choise != 2 && choise != 1 && choise != 0)                                   //safety kit
         {
-            cout << "Wrong number try again!(1 or 2).";
+            cout << "Wrong number try again!(1, 2 or 0).";
             cin >> choise;
         }
 
@@ -34,7 +35,7 @@ int main()
             deciToBina(decNumber);
             cout <<"." << endl;
         }
-        else
+        else if(choise == 2)
         {                                               //binary to deci
             cout << "Enter a binar number: " << endl;
             cin >> binNumber;
@@ -44,11 +45,23 @@ int main()
                 strLen++;
             }
 
-            //cout << endl << strLen;
-
-            /*for(int i = 0; i < strLen; i++)                       //safety first
+            for(int i = 0; i < strLen; i++)                       //safety first
             {
-                while(binNumber[i] != '0' || binNumber[i] != '1' || binNumber[i] != NULL)
+                while(binNumber[i] != '0' || binNumber[i] != '1')
+                {
+                    cout << endl << binNumber << endl;
+                    cout << binNumber << " is not a binary number, try again:" << endl;
+                    cin >> binNumber;
+                    i = 0;
+                    while(binNumber[strLen] != NULL)           //getting our string length
+                    {
+                        strLen++;
+                    }
+                    cout << endl << binNumber << endl;
+                }
+            }
+
+                /*while(binNumber[i] != '0' || binNumber[i] != '1' || binNumber[i] != NULL)
                 {
                     cout << binNumber << " is not a binary number, try again:" << endl;
                     cin >> binNumber;
@@ -61,6 +74,11 @@ int main()
             }*/
             binaToDeci(binNumber, strLen);
         }
+        else
+        {
+            exit(0);
+        }
+
         cout << endl << endl;
     }
 }
@@ -83,40 +101,16 @@ void deciToBina(int decNumber)
     }
 }
 
+
 void binaToDeci(string binNumber, int stringLength)
 {
-    while(binNumber[strLen] != NULL)           //getting our string length
+    for(int i = stringLength - 1; i >= 0; i--)          //going from last to 1st
     {
-        strLen++;
-    }
-
-    /*for(int i = 0; i < strLen; i++)                       //safety first
-    {
-        while(binNumber[i] != '0' || binNumber[i] != '1')
-        {
-            cout << binNumber << " is not a binary number, try again:" << endl;
-            cin >> binNumber;
-            i = 0;
-
-            while(binNumber[strLen] != NULL)           //getting our string length
-            {
-                strLen++;
-            }
-        }
-    }*/
-    cout << endl << stringLength << endl;
-
-    cout << binNumber[1] << binNumber[2] << endl;
-
-    for(int i = stringLength - 1; i >= 0; i--)
-    {
-        if(binNumber[i] == '1')
+        if(binNumber[i] == '1')                         //in case == 0 nothing is changing
         {
             decNumber += temp;
         }
-
-        temp *= 2;
-        cout << endl << temp << endl;
+        temp *= 2;                                       //powers of 2 for each next bite
     }
 
     cout << endl << binNumber << " in Decimal will be: " << decNumber << endl;
